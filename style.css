@@ -38,7 +38,8 @@ body {
   cursor: pointer;
 }
 
-#reset-btn {
+#reset-btn,
+.new-game {
   padding: 1rem;
   font-size: 1.25rem;
   background-color: #191913;

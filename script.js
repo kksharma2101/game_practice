@@ -1,9 +1,14 @@
 let boxes = document.querySelectorAll(".box");
 let resetBtn = document.getElementById("reset-btn");
+let newGame = document.querySelector(".new-game");
+
+newGame.addEventListener("click", () => {
+  location.reload();
+});
 
 let player1 = true;
 
-let possibleWins = [
+let possiblePatterns = [
   [0, 1, 2],
   [3, 4, 5],
   [6, 7, 8],
@@ -25,21 +30,25 @@ boxes.forEach((box) => {
     }
     box.disabled = true;
     resetBtn.addEventListener("click", () => {
-      box.innerHTML = "";
+      box.innerText = "";
+      // location.reload();
     });
     checkWinner();
   });
 });
 
 const checkWinner = () => {
-  for (let pattern of possibleWins) {
-    let player1Value = boxes[pattern[0]].innerText;
-    let player2Value = boxes[pattern[1]].innerText;
-    let player3Value = boxes[pattern[2]].innerText;
+  for (let pattern of possiblePatterns) {
+    let pos1Value = boxes[pattern[0]].innerText;
+    let pos2Value = boxes[pattern[1]].innerText;
+    let pos3Value = boxes[pattern[2]].innerText;
 
-    if (player1Value !== "" && player2Value !== "" && player3Value !== "") {
-      if (player1Value === player2Value && player2Value === player3Value) {
-        console.log("you win the game");
+    if (pos1Value !== "" && pos2Value !== "" && pos3Value !== "") {
+      if (pos1Value === pos2Value && pos2Value === pos3Value) {
+        console.log("you are win the game");
+        for (let box of boxes) {
+          box.disabled = true;
+        }
       }
     }
   }
